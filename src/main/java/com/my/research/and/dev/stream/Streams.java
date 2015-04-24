@@ -14,6 +14,7 @@ import java.util.function.Predicate;
  * Based on following articles:
  * http://habrahabr.ru/post/256057/
  * http://www.deadcoderising.com/java-8-no-more-loops/
+ * http://www.deadcoderising.com/transactions-using-execute-around-method-in-java-8/
  */
 public class Streams {
 
