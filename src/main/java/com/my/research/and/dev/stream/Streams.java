@@ -32,6 +32,8 @@ public class Streams {
         System.out.println(javaArticles.getFirstJavaArticle());
         System.out.println(noJavaArticles.getFirstJavaArticle());
         System.out.println(noJavaArticles.getFirstJavaArticle2() + "\n");
+
+        System.out.println(javaArticles.getFirstJavaArticle().map(Article::getTitle) + "\n");
     }
 
     public Article getFirstJavaArticleLegacy() {

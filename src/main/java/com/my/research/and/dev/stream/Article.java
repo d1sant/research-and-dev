@@ -6,15 +6,15 @@ import java.util.HashSet;
 
 public class Article {
 
-    private String name;
+    private String title;
     private Collection<String> tags = new HashSet<>();
 
-    public Article(final String name, final String tag) {
-        this(name, Arrays.<String> asList(tag));
+    public Article(final String title, final String tag) {
+        this(title, Arrays.<String> asList(tag));
     }
 
-    public Article(final String name, final Collection<String> tags) {
-        this.name = name;
+    public Article(final String title, final Collection<String> tags) {
+        this.title = title;
         this.tags = tags;
     }
 
@@ -22,8 +22,8 @@ public class Article {
         tags.add(tag);
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public Collection<String> getTags() {
@@ -33,7 +33,7 @@ public class Article {
     @Override
     public String toString() {
         return "Article{" +
-                "name='" + name + '\'' +
+                "title='" + title + '\'' +
                 ", tags=" + tags +
                 '}';
     }
