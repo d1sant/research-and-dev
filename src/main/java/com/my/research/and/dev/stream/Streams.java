@@ -3,6 +3,7 @@ package com.my.research.and.dev.stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,18 +23,24 @@ public class Streams {
 
     public static void main(String[] args) {
 
-        final Streams javaArticles = new Streams(Arrays.asList(new Article("First", "Java"), new Article("Second", "Java"), new Article("First", "Scala")));
-        final Streams noJavaArticles = new Streams(Arrays.asList(new Article("First", "Closure"), new Article("Second", "Scala")));
+        final List<Article> articles = Arrays.asList(new Article("First", "Java"), new Article("Second", "Java"), new Article("First", "Scala"));
+        final Streams javaArticlesStream = new Streams(articles);
+        final List<Article> articlesWithoutJava = Arrays.asList(new Article("First", "Closure"), new Article("Second", "Scala"));
+        final Streams noJavaArticlesStream = new Streams(articlesWithoutJava);
 
-        System.out.println(javaArticles.getFirstJavaArticleLegacy());
-        System.out.println(noJavaArticles.getFirstJavaArticleLegacy());
-        System.out.println(noJavaArticles.getFirstJavaArticleLegacy2() + "\n");
+        System.out.println(javaArticlesStream.getFirstJavaArticleLegacy());
+        System.out.println(noJavaArticlesStream.getFirstJavaArticleLegacy());
+        System.out.println(noJavaArticlesStream.getFirstJavaArticleLegacy2() + "\n");
 
-        System.out.println(javaArticles.getFirstJavaArticle());
-        System.out.println(noJavaArticles.getFirstJavaArticle());
-        System.out.println(noJavaArticles.getFirstJavaArticle2() + "\n");
+        System.out.println(javaArticlesStream.getFirstJavaArticle());
+        System.out.println(noJavaArticlesStream.getFirstJavaArticle());
+        System.out.println(noJavaArticlesStream.getFirstJavaArticle2() + "\n");
 
-        System.out.println(javaArticles.getFirstJavaArticle().map(Article::getTitle) + "\n");
+        System.out.println(javaArticlesStream.getFirstJavaArticle().map(Article::getTitle) + "\n");
+
+        final PrintHandler printHandler = new PrintHandler();
+        printHandler.print(p -> p.print(javaArticlesStream.getFirstJavaArticle2()));
+        printHandler.print(p -> articles.forEach(p::print));
     }
 
     public Article getFirstJavaArticleLegacy() {
