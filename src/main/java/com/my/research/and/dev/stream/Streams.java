@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Examples of usage Stream API.
@@ -23,7 +25,7 @@ public class Streams {
 
     public static void main(String[] args) {
 
-        final List<Article> articles = Arrays.asList(new Article("First", "Java"), new Article("Second", "Java"), new Article("First", "Scala"));
+        final List<Article> articles = Arrays.asList(new Article("First", "Java"), new Article("Second", "Java"), new Article("First", "Scala"), new Article("Third", "Clojure"));
         final Streams javaArticlesStream = new Streams(articles);
         final List<Article> articlesWithoutJava = Arrays.asList(new Article("First", "Closure"), new Article("Second", "Scala"));
         final Streams noJavaArticlesStream = new Streams(articlesWithoutJava);
@@ -41,8 +43,19 @@ public class Streams {
         final PrintHandler printHandler = new PrintHandler();
         printHandler.print(p -> p.print(javaArticlesStream.getFirstJavaArticle2()));
         printHandler.print(p -> articles.forEach(p::print));
+
+        // refined
+        printHandler.print(p -> p.print(javaArticlesStream.getFirst(article -> article.getTags().contains("Java"))));
+        printHandler.print(p -> p.print(javaArticlesStream.getFirst(article -> article.getTags().contains("Scala"))));
+        printHandler.print(p -> p.print(javaArticlesStream.getFirst(article -> article.getTags().contains("Clojure"))));
+
+        // more refined
+        final Function<String, Predicate<Article>> basedOnTag = tag -> article -> article.getTags().contains(tag);
+        printHandler.print(p -> p.print(javaArticlesStream.getFirst(basedOnTag.apply("Java"))));
+        printHandler.print(p -> p.print(javaArticlesStream.getFirst(basedOnTag.apply("Scala"))));
     }
 
+    // Legacy approach
     public Article getFirstJavaArticleLegacy() {
         for (Article article : articles) {
             if (article.getTags().contains("Java")) {
@@ -61,6 +74,7 @@ public class Streams {
         return articles.iterator().next();
     }
 
+    // New approach based on Java 8 API
     public Optional<Article> getFirstJavaArticle() {
         return articles.stream()
                 .filter(article -> article.getTags().contains("Java"))
@@ -73,5 +87,12 @@ public class Streams {
 
     private Article fetchLatestArticle() {
         return articles.stream().findAny().get();
+    }
+
+    // Refactored version of getFirstJavaArticle using predicates for generalization
+    public Optional<Article> getFirst(Predicate<Article> predicate) {
+        return articles.stream()
+                .filter(predicate)
+                .findFirst();
     }
 }
