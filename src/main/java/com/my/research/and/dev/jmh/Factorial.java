@@ -16,6 +16,9 @@ import java.math.BigInteger;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
+/**
+ * Based on http://habrahabr.ru/post/255813/
+ */
 @Warmup(iterations=5)
 @Measurement(iterations=10)
 @BenchmarkMode(Mode.AverageTime)
