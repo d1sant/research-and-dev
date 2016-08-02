@@ -1,4 +1,4 @@
-package com.my.research.and.dev.stream;
+package com.my.research.and.dev.streams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
