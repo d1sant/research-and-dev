@@ -18,10 +18,11 @@ public class BloomFilterTest {
             bloomFilter.put(random.nextInt(1000));
         }
 
-        System.out.println(bloomFilter.mightContain(1));
-        System.out.println(bloomFilter.mightContain(10));
-        System.out.println(bloomFilter.mightContain(100));
-        System.out.println(bloomFilter.mightContain(999));
-        System.out.println(bloomFilter.mightContain(1000));
+        System.out.println(bloomFilter.mightContain(0)); // true
+        System.out.println(bloomFilter.mightContain(1)); // t or f
+        System.out.println(bloomFilter.mightContain(10)); // t or f
+        System.out.println(bloomFilter.mightContain(100)); // t or f
+        System.out.println(bloomFilter.mightContain(999)); // true
+        System.out.println(bloomFilter.mightContain(1000)); // t or f
     }
 }
