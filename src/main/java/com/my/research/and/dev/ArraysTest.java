@@ -16,5 +16,11 @@ public class ArraysTest {
             System.out.println(Arrays.toString(objArray));
             System.out.println(objArray[i][0]);
         }
+
+        final int[] array1 = new int[3];
+        for (int i = 0; i < 5; i++) {
+            array1[0]++;
+        }
+        System.out.println(Arrays.toString(array1));
     }
 }

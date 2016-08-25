@@ -13,7 +13,7 @@ import java.io.File;
 public class ReelsExtractor {
 
     private static final String PATH_TO_MATH = "/Users/dmitry.palaznik/American Dad-math-94.14%_v1.2_PT.xlsx";
-    private static final String SHEET = "FG Reels Stan_10";
+    private static final String SHEET = "Re-spin Reels Stan_10.4";
     private static final int START_COLUMN_INDEX = 1;
     private static final int END_COLUMN_INDEX = 5;
 
