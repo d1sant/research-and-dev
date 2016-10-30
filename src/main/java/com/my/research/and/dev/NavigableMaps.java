@@ -4,6 +4,7 @@ import com.google.common.collect.TreeMultimap;
 
 import java.util.NavigableMap;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class NavigableMaps {
 
@@ -42,5 +43,10 @@ public class NavigableMaps {
         System.out.println(treeMap.get(1).first());
         System.out.println(treeMap.asMap().floorEntry(4).getValue());
         System.out.println(treeMap.asMap().ceilingEntry(4).getValue());
+
+        System.out.println(map.headMap(4));
+        System.out.println(map.tailMap(4));
+        System.out.println(map.descendingMap().headMap(4));
+        System.out.println(map.descendingMap().tailMap(4).values().stream().sorted((s1, s2) -> Integer.compare(Integer.valueOf(s1), Integer.valueOf(s2))).collect(Collectors.toList()));
     }
 }
