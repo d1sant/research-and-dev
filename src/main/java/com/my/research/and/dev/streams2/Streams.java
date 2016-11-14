@@ -3,6 +3,8 @@ package com.my.research.and.dev.streams2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Streams {
 
@@ -34,6 +36,21 @@ public class Streams {
         // Optional<Integer> maxValueNull = testValuesNull.stream().max(Integer::compareTo); // will throw NPE
         final Optional<Integer> maxValueNotNull = testValuesNull.stream().filter((p) -> p != null).max(Integer::compareTo);
         System.out.println("MaxValueNotNull=" + maxValueNotNull);
+
+        final List<Val> vals = Stream.generate(Val::new).limit(11).collect(Collectors.toList());
+        System.out.println(vals);
     }
 
+    static class Val {
+        private int val;
+        public Val() {
+            val = 1;
+        }
+        @Override
+        public String toString() {
+            return "Val{" +
+                    "val=" + val +
+                    '}';
+        }
+    }
 }
