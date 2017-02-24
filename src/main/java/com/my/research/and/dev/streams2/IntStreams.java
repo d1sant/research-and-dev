@@ -16,7 +16,7 @@ public class IntStreams {
         System.out.println(IntStream.range(0, 6).average().getAsDouble());
 
         final List<Integer> listWithDuplicates = Arrays.asList(1, 1, 1, 2, 2, 1, 3, 2, 2, 5, 5, 1, 1, 1);
-        // final List<Integer> listWithDuplicates = Arrays.asList(1, 2, 3);
+        // final List<Integer> listWithDuplicates = ArrayLesson.asList(1, 2, 3);
         System.out.println(listWithDuplicates);
 
         final IntPredicate filter = i -> i + 1 == listWithDuplicates.size() || !listWithDuplicates.get(i).equals(listWithDuplicates.get(i + 1));
